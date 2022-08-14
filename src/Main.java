@@ -67,18 +67,9 @@ class Calculator {
         String oneS = String.copyValueOf(chars1).trim();
         String twoS = String.copyValueOf(chars2).trim();
 
-        boolean isRoman = false;
-
-        for (String s : roman) {
-            if (s.equals(oneS)) {
-                isRoman = true;
-                break;
-            }
-        }
-
         String res;
 
-        if (isRoman) {
+        if (isRoman(oneS, twoS)) {
             int one = convertRomanToNum(oneS);
             int two = convertRomanToNum(twoS);
             booms(one, two);
@@ -98,7 +89,14 @@ class Calculator {
         return res;
     }
 
-
+    private boolean isRoman(String oneS, String twoS){
+        for (String s : roman) {
+            if (s.equals(oneS) || s.equals(twoS)) {
+                return true;
+            }
+        }
+        return false;
+    }
     private boolean containsArithmeticOperation(String s) {
         return s.contains("-") || s.contains("+") || s.contains("/") || s.contains("*");
     }
